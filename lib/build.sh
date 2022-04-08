@@ -28,6 +28,7 @@ download_node() {
     local foo=$(curl --silent --get --retry 5 --retry-max-time 15 --data-urlencode "range=$node_version" "https://nodebin.herokai.com/v1/node/$platform/latest.txt")
     if ! read number url < <(curl --silent --get --retry 5 --retry-max-time 15 --data-urlencode "range=$node_version" "https://nodebin.herokai.com/v1/node/$platform/latest.txt"); then
       echo "BAD $foo"
+      $SHELL --version
       echo "curl --silent --get --retry 5 --retry-max-time 15 --data-urlencode range=$node_version https://nodebin.herokai.com/v1/node/$platform/latest.txt"
       fail_bin_install node $node_version;
     fi
