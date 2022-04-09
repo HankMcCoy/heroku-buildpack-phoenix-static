@@ -25,7 +25,7 @@ download_node() {
 
   if [ ! -f ${cached_node} ]; then
     echo "Resolving node version $node_version..."
-    local foo=$(curl --silent --get --retry 5 --retry-max-time 15 --data-urlencode "range=$node_version" "https://nodebin.herokai.com/v1/node/$platform/latest.txt")
+    curl --get --data-urlencode "range=$node_version" "https://nodebin.herokai.com/v1/node/$platform/latest.txt"
     if ! read number url < <(curl --silent --get --retry 5 --retry-max-time 15 --data-urlencode "range=$node_version" "https://nodebin.herokai.com/v1/node/$platform/latest.txt"); then
       echo "BAD $foo"
       $SHELL --version
